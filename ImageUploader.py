@@ -1,6 +1,5 @@
 import requests
 from io import BytesIO
-from PIL import Image
 import numpy as np
 from PIL import Image
 
@@ -37,10 +36,10 @@ class ImageUploader:
         results = ""
 
         for (batch_number, image_tensor) in enumerate(image):
-            original_image = Image.open(image)
             image_np = 255. * image_tensor.cpu().numpy()
+            imageinfo = image
             image = Image.fromarray(np.clip(image_np, 0, 255).astype(np.uint8))
-            image.info = original_image.info # transfer metadata from original image to the processed image
+            image.info = imageinfo.info
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
