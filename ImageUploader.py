@@ -37,9 +37,7 @@ class ImageUploader:
 
         for (batch_number, image_tensor) in enumerate(image):
             image_np = 255. * image_tensor.cpu().numpy()
-            imageinfo = image
             image = Image.fromarray(np.clip(image_np, 0, 255).astype(np.uint8))
-            image.info = imageinfo.info
             buffer = BytesIO()
             image.save(buffer, format="PNG")
             buffer.seek(0)
