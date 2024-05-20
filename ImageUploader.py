@@ -54,7 +54,7 @@ class ImageUploader:
                 
 
             if response.status_code == 200:
-                results = f"Posted image to {host} with url {response.text}"
+                results = f"Posted image to {host} with url: {response.text}"
             else:
                 print(f"Error posting image {batch_number}: {response.text}")
             print(results)
