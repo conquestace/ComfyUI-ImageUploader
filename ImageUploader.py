@@ -60,6 +60,7 @@ class ImageUploader:
                     if 'files' in response_json and len(response_json['files']) > 0:
                         url_without_backslashes = response_json['files'][0]['url'].replace('\\', '')
                         print("Uploaded successfully. URL:", url_without_backslashes)
+                        results = f"Posted image to {host} with url: {url_without_backslashes}"
                 
 
 
