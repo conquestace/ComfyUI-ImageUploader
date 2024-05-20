@@ -48,13 +48,21 @@ class ImageUploader:
                 data = {'reqtype': 'fileupload', 'userhash': key}
                 files = {'fileToUpload': ('image.png', buffer, 'image/png')}
                 response = requests.post(api_url, data=data, files=files,)
+                if response.status_code == 200:
+                    results = f"Posted image to {host} with url: {response.text}"
+                    
             elif host == "uguu":
                 files = {'files[]': ('image.png', buffer, 'image/png')}
                 response = requests.post(api_url, files=files,)
+                if response.status_code == 200:
+                # Extract the URL from the response JSON
+                response_json = response.json()
+                if 'files' in response_json and len(response_json['files']) > 0:
+                    url_without_backslashes = response_json['files'][0]['url'].replace('\\', '')
+                    print("Uploaded successfully. URL:", url_without_backslashes)
                 
 
-            if response.status_code == 200:
-                results = f"Posted image to {host} with url: {response.text}"
+
             else:
                 print(f"Error posting image {batch_number}: {response.text}")
             print(results)
