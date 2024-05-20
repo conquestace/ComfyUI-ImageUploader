@@ -56,10 +56,10 @@ class ImageUploader:
                 response = requests.post(api_url, files=files,)
                 if response.status_code == 200:
                 # Extract the URL from the response JSON
-                response_json = response.json()
-                if 'files' in response_json and len(response_json['files']) > 0:
-                    url_without_backslashes = response_json['files'][0]['url'].replace('\\', '')
-                    print("Uploaded successfully. URL:", url_without_backslashes)
+                    response_json = response.json()
+                    if 'files' in response_json and len(response_json['files']) > 0:
+                        url_without_backslashes = response_json['files'][0]['url'].replace('\\', '')
+                        print("Uploaded successfully. URL:", url_without_backslashes)
                 
 
 
