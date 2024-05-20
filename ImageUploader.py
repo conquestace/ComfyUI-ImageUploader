@@ -23,7 +23,7 @@ class ImageUploader:
 
     FUNCTION = "run"
 
-    CATEGORY = "imgupload"
+    CATEGORY = "image"
 
 
 
@@ -43,9 +43,15 @@ class ImageUploader:
             buffer.seek(0)
 
             # Specify file name and MIME type
-            files = {'fileToUpload': ('image.png', buffer, 'image/png')}
-            data = {'reqtype': 'fileupload', 'userhash': key}
-            response = requests.post(api_url, data=data, files=files,)
+            
+            if host == "catbox":
+                data = {'reqtype': 'fileupload', 'userhash': key}
+                files = {'fileToUpload': ('image.png', buffer, 'image/png')}
+                response = requests.post(api_url, data=data, files=files,)
+            elif host == "uguu":
+                files = {'files[]': ('image.png', buffer, 'image/png')}
+                response = requests.post(api_url, files=files,)
+                
 
             if response.status_code == 200:
                 results = f"Posted image to {host} with url {response.text}"
