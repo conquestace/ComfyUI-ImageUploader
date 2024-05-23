@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-imageuploader"
+description = "Upload images automatically to image hosting sites."
+version = "1.0.0"
+license = "LICENSE"
+
+[project.urls]
+Repository = "https://github.com/conquestace/ComfyUI-ImageUploader"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-ImageUploader"
+Icon = ""
